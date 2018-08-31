@@ -1,22 +1,25 @@
 # Errors
 
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
+API использует следующие коды ошибок:
 
-The Kittn API uses the following error codes:
-
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+Code | Name | Description
+---------- | ------- | --------
+1 | Accept | Операция выполнена успешно.
+2 | WrongDataFormat | Некорректный формат входных данных.
+3 | InstrumentNotFound | Не найден соответствующий инструмент.
+4 | LotLimitExceeds | Объем вне лимита.
+5 | IncorrectLotStep | Объем не кратен минимальному шагу объема.
+6 | PriceLimitExceeds | Цена вне лимита.
+7 | IncorrectPriceStep | Цена не кратна минимальному шагу цены.
+8 | IncorrectOrderType | Недопустимый тип заявки
+9 | IncorrectClientOrderID | Некорректный тип данных.
+10 | IncorrectOrderID | Некорректный тип данных.
+11 | IncorrectFieldType | Некорректный тип данных.
+12 | TooMuchOrders | Превышен лимит операций в пачке.
+13 | UnknownCommand | Недопустимый тип сообщения.
+14 | AuthorizationRequired | Нет прав для выполнения операции, необходимо авторизоваться.
+15 | OrderNotFound | Не найдена заявка.
+16 | AuthorizationError | Ошибка авторизации.
+17 | Liquidation | Идет ликыидация позиции.
+18 | NoMoney | Недостаточно средств.
+19 | OrderLessThanOne | Ордер меньше или равен 0 после мува.
