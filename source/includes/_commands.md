@@ -39,6 +39,7 @@ Code | Name | Description
 
 Code | Name | Description
 ---------- | ------- | --------
+100 | MatchingEngineResponse | Message from matching engine
 110 | ClientOrderClearResponse | Clear client orders
 111 | ClientOrderSnapshotResponse | Client orders snapshot
 112 | PositionClearResponse | Clear client positions
