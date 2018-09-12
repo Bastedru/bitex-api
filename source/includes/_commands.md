@@ -1,49 +1,49 @@
 # Commands
 
-API использует следующие коды команд:
+Websocket API uses next commands
 
 ## Public request
 
 Code | Name | Description
 ---------- | ------- | --------
-1000 | AuthorizationRequest | Запрос авторизации.
-1100 | SubscribeOrderBook | Подписаться на книгу заявок.
-1101 | UnSubscribeOrderBook | Отменить подписку на книгу заявок.
-1102 | SubscribeTrade | Подписаться на ленту сделок.
-1103 | UnSubscribeTrade | Отменить подписку на ленту сделок.
-1104 | InstrumentParamsRequest | Параметры инструмента.
+1000 | AuthorizationRequest | Authorization request
+1100 | SubscribeOrderBook | Subscribe to order book of a specific instrument
+1101 | UnSubscribeOrderBook | Unsubscribe to order book of a specific instrument
+1102 | SubscribeTrade | Subscribe to trades of a specific instrument
+1103 | UnSubscribeTrade | Unsubscribe to trades of a specific instrument
+1104 | InstrumentParamsRequest | Request all instrument parameters
 
 
 ## Public response
 
 Code | Name | Description
 ---------- | ------- | --------
-1 | OrderBookClearResponse | Очистить книгу заявок.
-2 | OrderBookSnapshotResponse | Снепшот книги заявок.
-3 | OrderBookIncrementalResponse | Инкрементальное обновление книги заявок.
-4 | TradeClearResponse | Очистить ленту сделок.
-5 | TradeIncrementalResponse | Инкрементальное обновление ленты сделок.
-1001 | AuthorizationResponse | Ответ авторизации.
-1105 | InstrumentParamsResponse | Ответ параметры инструмента.
-1107 | InstrumentChangeResponse | Ответ параметры торгов инструмента.
+1 | OrderBookClearResponse | Clear order book of a specific instrument
+2 | OrderBookSnapshotResponse | Snapshot of order book
+3 | OrderBookIncrementalResponse | Incremental messages for order book
+4 | TradeClearResponse | Clear trades of specific instrument
+5 | TradeIncrementalResponse | Incremental messages for trades
+1001 | AuthorizationResponse | Authorization response message
+1105 | InstrumentParamsResponse | Request all instrument parameters
+1107 | InstrumentStatisticResponse | Instrument statistic message
 
-## Authenticated request
-
-Code | Name | Description
----------- | ------- | --------
-100 | AddOrderRequest | Добавление заявок.
-101 | MoveOrderNewVolumeRequest | Перемещение заявок.
-103 | CancelOrderRequest | Удаление заявок.
-
-## Authenticated response
+## Authorized request
 
 Code | Name | Description
 ---------- | ------- | --------
-110 | ClientOrderClearResponse | Очистка всех заявок.
-111 | ClientOrderSnapshotResponse | Снепшот всех заявок.
-112 | PositionClearResponse | Очистка всех позиций.
-113 | PositionSnapshotResponse | Снепшот всех позиций.
-114 | BalanceResponse | Снапшот баланса.
-200 | AddOrderResponse | Добавление заявок ответ.
-201 | MoveOrderNewVolumeResponse | Перемещение заявок ответ.
-203 | CancelOrderResponse | Удаление заявок ответ.
+100 | AddOrderRequest | Add order request
+101 | MoveOrderNewVolumeRequest | Move order request
+103 | CancelOrderRequest | Cancel order request
+
+## Authorized response
+
+Code | Name | Description
+---------- | ------- | --------
+110 | ClientOrderClearResponse | Clear client orders
+111 | ClientOrderSnapshotResponse | Client orders snapshot
+112 | PositionClearResponse | Clear client positions
+113 | PositionSnapshotResponse | Client positions snapshot
+114 | BalanceResponse | Client balance message
+200 | AddOrderResponse | Add order error message
+201 | MoveOrderNewVolumeResponse | Move order error message
+203 | CancelOrderResponse | Cancel order error message

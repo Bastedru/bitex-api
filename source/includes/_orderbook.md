@@ -1,39 +1,39 @@
 # Order Book
-
+<aside class="notice">Order book available only on Swap contracts (ins_type=1) and Futures contracts (ins_type=2)</aside>
 > Order Book subscribe:
 
 ```javascript
-//Подписаться на инструмент 1
+// Subscribe on order book for ins_id = 1
 socket.send('[1100, [1]]');
 
-//Подписаться на инструмент 1 и 2
+// Subscribe on order book for ins_id = 1 and 2
 socket.send('[1100, [1, 2]]');
 ```
 
 ### Request Order Book subscribe
 <code>
-[1100,[IsinId]]
+[1100,[ins_id]]
 </code>
 
 > Order Book unsubscribe:
 
 ```javascript
-//Отменить подписку на инструмент 1
+// Unsubscribe on order book for ins_id = 1
 socket.send('[1101, [1]]');
 
-//Отменить подписку на инструмент 1 и 2
+// Unsubscribe on order book for ins_id = 1 and 2
 socket.send('[1101, [1, 2]]');
 ```
 
 ### Request Order Book unsubscribe
 <code>
-[1101,[IsinId]]
+[1101,[ins_id]]
 </code>
 
 
 ### Response Order Book clear
 <code>
-[1,IsinId,[]]
+[1,ins_id,[]]
 </code>
 
 > Order Book clear:
@@ -42,7 +42,7 @@ socket.send('[1101, [1, 2]]');
 [1,1,[]]
 ```
 
-* Очистить все данные из книги заявок
+* Clear all data on order book
 
 ### Response Order Book snapshot
 <code>
@@ -60,11 +60,11 @@ socket.send('[1101, [1, 2]]');
 ]
 ```
 
-* Инициализировать книгу заявок
+* Initialize order book
 
 ### Response Order Book incremental changes
 <code>
-[3,IsinId,[Price,Amount]]
+[3,IsinId,[price,volume]]
 </code>
 
 > Order Book incremental changes:
@@ -75,12 +75,12 @@ socket.send('[1101, [1, 2]]');
 [3,1,[1622499,8248]]
 ```
 
-* Обновить книгу заявок каджым изменением
+* Need update the volume in each price level of the order book
 
 ### Order Book update logic 
 
-* Если Amount = 0 означает, что уровень был **удален**.  
-* Если Amount > 0 **обновить** объем по указанной цене **BID**.
-* Если Amount < 0 **обновить** объем по указанной цене **ASK**.
+* If volume = 0 - **delete** price level on **ASK** and **BID** side
+* If volume > 0 - **update** price level on **BID** side
+* If volume < 0 - **update** price level on **ASK** side
 
 

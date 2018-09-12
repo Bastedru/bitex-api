@@ -1,9 +1,9 @@
 
 # Authentication
 
-Используйте ApiKey и приватный ключ для авторизации.
+Use ApiKey and private key for authorization.
 
-> Для авторизации используйте код:
+> For authorization use this code:
 
 ```javascript
 ApiKey = "ieW-nrNVN4qFJsMEiwtVqyjA";
@@ -13,13 +13,13 @@ Nonce = "1510929522353"
 Signature = HMAC_SHA256(Nonce, Secret)
 
 socket.send('[1000,[ApiKey,Nonce,Signature]]');
-//Ответ успешная авторизация
-[1001,[200,"Welcome to bitex.one Realtime API."]]
-//Ответ ошибка авторизации
-[1001,[215]]
+// Authorization success response
+[1001,[1,"Welcome to bitex.one Realtime API."]]
+// Authorization error response
+[1001,[16]]
 ```
 
-> Пример сообщения:
+> Example message:
 
 ```javascript
 socket.send('[1000,["ieW-nrNVN4qFJsMEiwtVqyjA","1510929522353","2e82ed97579f24976295cd895e071402c1776612015e15d1acff112885ae6c91"]]');
@@ -28,47 +28,41 @@ socket.send('[1000,["ieW-nrNVN4qFJsMEiwtVqyjA","1510929522353","2e82ed97579f2497
 ### Request
 
 <code>
-[1000,[ApiKey,Nonce,Signature]]
+[1000,[api_key,nonce,signature]]
 </code>
 
 ### Request parameters
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-ApiKey | true | string | API ключ авторизации.
-Nonce | true | string | Nonce должно быть числом.
-Signature | true | string | Подпись.
+api_key | true | string | API key
+nonce | true | string | Nonce must be a number
+signature | true | string | Signature
 
 ### Response
 
 <code>
-[1001,[Code,Message]]
+[1001,[code,message]]
 </code>
-
-### Request parameters
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-Code | true | int32 | Код возврата.
-Message | false | string | Nonce должно быть числом.
-
-
-
-
+code | true | uint8 | Result code
+message | false | string | Message string
 
 
 
 
 ## Order Snapshot
 
-После успешной авторизации клиент получает снепшот заявок
+If authorization succeed client gets orders snapshot
 
 ### Response clear
 
 > Response Clear:
 
 ```javascript
-//Очистка всех заявок
+// Clear all client orders
 [110,[]]
 ```
 
@@ -81,7 +75,7 @@ Message | false | string | Nonce должно быть числом.
 > Response Snapshot:
 
 ```javascript
-//Снепшот всех заявок
+// All orders snapshot
 [111,[[2,1,100000007,72050,64,1,1534029000],[1,1,100000005,720510000000,-64050000,1,1534029000]]]
 ```
 
@@ -93,27 +87,27 @@ Message | false | string | Nonce должно быть числом.
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-ClientOrderId | true | uint32 | Внешний номер. Добавляется в заявку.
-IsinId | true | int32 | Код инструмента.
-OrderId | true | uint64 | Код заявки в системе.
-Price | true | int64 | Цена заявки.
-Amount | true | int64 | Количество единиц инструмента.
-Status | true | uint8 | Действие с заявкой.
-Time | true | uint64 | Время операции.
+client_order_id | true | uint32 | Client defined order id
+ins_id | true | uint16 | Instrument identificator
+order_id | true | uint64 | System order identificator
+price | true | int32 | Order price
+volume | true | int32 | Order volume in contracts
+status | true | uint8 | Order status
+time | true | uint64 | Time of last order change in sec, since Jan 01 1970. (UTC) 
 
 ### Amount
 
 <aside class="notice">
-Amount < 0 order sell, Amount > 0 order buy
+If volume < 0 - sell order. If volume > 0 - buy order
 </aside>
 
 ### Status
 
 Value | Description
 --------- | ------- 
-0 | Заявка удалена.
-1 | Заявка добавлена.
-2 | Заявка сведена в сделку.
+0 | Order canceled
+1 | Order added
+2 | Order executed
 
 
 
@@ -125,14 +119,14 @@ Value | Description
 
 ## Position Snapshot
 
-Снапшот позиций
+If authorization succeed client gets positions snapshot
 
 ### Response clear
 
 > Response Clear:
 
 ```javascript
-//Очистка всех позиций
+// Clear all client positions
 [112,[]]
 ```
 
@@ -145,26 +139,26 @@ Value | Description
 > Response Snapshot:
 
 ```javascript
-//Снепшот всех позиций
-[113,[[1,1580441,-6297351]]]
+// Snapshot all client positions
+[113,[[9,18462520000001,-2000],[1,630330330000000,1000]]]
 ```
 
 <code>
-[113,[[IsinId,PriceAvg,Amount]]]
+[113,[[ins_id,price_avg,volume]]]
 </code>
 
 ### Response parameters
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-IsinId | true | int32 | Код инструмента.
-PriceAvg | true | int64 | Средняя цена входа.
-Amount | true | int64 | Количество единиц инструмента.
+ins_id | true | uint16 | Instrument identificator
+price_avg | true | int64 | Average price multiplied by 10^10
+volume | true | int32 | Position volume
 
-### Amount
+### volume
 
 <aside class="notice">
-Amount < 0 sell, Amount > 0 buy
+volume < 0 - short position, volume > 0 - long position
 </aside>
 
 
@@ -173,31 +167,32 @@ Amount < 0 sell, Amount > 0 buy
 
 ## Balance Snapshot
 
-Снапшот баланса
+All balance values in satoshi (1 satoshi = 0.00000001 BTC).
 
 ### Response snapshot
 
 > Response Snapshot:
 
 ```javascript
-//Снепшот баланса
-[114,[-18904990,99981095010,249210540,36157661133,49842108,-599400,99980495610,63590292585,0]]
+// Balance snapshot
+[114,[2480662205,5754608835,35127000,0,7025400,-810125,5753798710,5718671710,2963326]]
 ```
 
 <code>
-[114,[RealisedPnL,WalletBalance,PositionMargin,OrderMargin,LiquidationPositionMargin,UnrealisedPnL,MarginBalance,AvailableBalance]]
+[114,[realized_pnl,wallet_balance,position_margin,order_margin,maintenance_margin,<br>
+unrealized_pnl,margin_balance,available_balance,referral_profit]]
 </code>
 
 ### Response parameters
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-RealisedPnL | true | int64 | профит по закрытым сделкам.
-WalletBalance | true | int64 | Deposits - Withdrawals + RealisedPnL.
-PositionMargin | true | int64 | маржа, зарезервированная под открытые позиции по всем инструментам.
-OrderMargin | true | int64 | маржа, зарезервированная под все выставленные ордера по всем инструментам.
-LiquidationPositionMargin | true | int64 | критический уровень маржи при достижении которого начинается ликвидация по всем позам.
-UnrealisedPnL | true | int64 | суммарный профит профит по всем открытым позициям.
-MarginBalance | true | int64 | WalletBalance + UnrealisedPnL.
-AvailableBalance | true | int64 | WalletBalance - PositionMargin - OrderMargin + UnrealisedPnL.
-ReferralProfit | true | int64 | Прибыль по реферальной программе.
+realized_pnl | true | int64 | Realized profit and loss
+wallet_balance | true | int64 | Funds on account exclude unrealized_pnl
+position_margin | true | int64 | Margin, reserved by all open positions
+order_margin | true | int64 | Margin, reserved by all active orders
+maintenance_margin | true | int64 | Critical level of margin. When wallet_balance < maintenance_margin liquidation begins
+unrealized_pnl | true | int64 | Sum profit by all open positions
+margin_balance | true | int64 | wallet_balance + unrealized_pnl
+available_balance | true | int64 | wallet_balance - position_margin - order_margin + unrealized_pnl
+referral_profit | true | int64 | Refferal program profit

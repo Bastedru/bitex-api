@@ -1,25 +1,28 @@
-# Errors
+# Error codes
 
-API использует следующие коды ошибок:
+API uses next error codes.
 
 Code | Name | Description
 ---------- | ------- | --------
-1 | Accept | Операция выполнена успешно.
-2 | WrongDataFormat | Некорректный формат входных данных.
-3 | InstrumentNotFound | Не найден соответствующий инструмент.
-4 | LotLimitExceeds | Объем вне лимита.
-5 | IncorrectLotStep | Объем не кратен минимальному шагу объема.
-6 | PriceLimitExceeds | Цена вне лимита.
-7 | IncorrectPriceStep | Цена не кратна минимальному шагу цены.
-8 | IncorrectOrderType | Недопустимый тип заявки
-9 | IncorrectClientOrderID | Некорректный тип данных.
-10 | IncorrectOrderID | Некорректный тип данных.
-11 | IncorrectFieldType | Некорректный тип данных.
-12 | TooMuchOrders | Превышен лимит операций в пачке.
-13 | UnknownCommand | Недопустимый тип сообщения.
-14 | AuthorizationRequired | Нет прав для выполнения операции, необходимо авторизоваться.
-15 | OrderNotFound | Не найдена заявка.
-16 | AuthorizationError | Ошибка авторизации.
-17 | Liquidation | Идет ликыидация позиции.
-18 | NoMoney | Недостаточно средств.
-19 | OrderLessThanOne | Ордер меньше или равен 0 после мува.
+1 | Accept | Operation completed successfully
+2 | WrongDataFormat | Wrong format of JSON
+3 | InstrumentNotFound | Instrument not found in system
+4 | LotLimitExceeds | Lot limit exceeds
+5 | IncorrectLotStep | Lot must be integer type
+6 | PriceLimitExceeds | Price value out of limit
+7 | IncorrectPriceStep | Price is not a multiple of the minimum step
+8 | IncorrectOrderType | Incorrect order type
+9 | IncorrectClientOrderID | Incorrect value in client_order_id field
+10 | IncorrectOrderID | Incorrect value in order_id field
+11 | IncorrectFieldType | Incorrect field type
+12 | TooMuchOrders | Too many orders in batch
+13 | UnknownCommand | Uncnown command code
+14 | AuthorizationRequired | Authorization required
+15 | OrderNotFound | Order with order_id not found in system 
+16 | AuthorizationError | Authorization error
+17 | Liquidation | Liquidation process
+18 | NoMoney | Not enoth money for operation
+19 | OrderLessThanOne | Order volume less than one
+20 | TradeDisabled | Trade disabled
+21 | NotEnothLiquidity | Not enoth liquidity for operation
+22 | MaxPosExceeds | Exceeds max position for current instrument

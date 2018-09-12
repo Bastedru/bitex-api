@@ -3,31 +3,31 @@
 > Trades subscribe:
 
 ```javascript
-//Подписаться на инструмент 1
+// Subscribe on trades for ins_id = 1
 socket.send('[1102, [1]]');
 
-//Подписаться на инструмент 1 и 2
+// Subscribe on trades for ins_id = 1 and 2
 socket.send('[1102, [1, 2]]');
 ```
 
 ### Request Trades subscribe
 <code>
-[1102,[IsinId]]
+[1102,[ins_id]]
 </code>
 
 > Trades unsubscribe:
 
 ```javascript
-//Отменить подписку на инструмент 1
+// Unsubscribe on trades for ins_id = 1
 socket.send('[1103, [1]]');
 
-//Отменить подписку на инструмент 1 и 2
+// Unsubscribe on trades for ins_id = 1 and 2
 socket.send('[1103, [1, 2]]');
 ```
 
 ### Request Trades unsubscribe
 <code>
-[1103,[IsinId]]
+[1103,[ins_id]]
 </code>
 
 ### Response Trades clear
@@ -41,7 +41,7 @@ socket.send('[1103, [1, 2]]');
 [4,1,[]]
 ```
 
-* Очистить ленту сделок
+* Clear all trades
 
 ### Response Trades snapshot
 <code>
@@ -56,7 +56,7 @@ socket.send('[1103, [1, 2]]');
 [5,1,[1620887,37,1513216631]]
 ```
 
-* Инициализировать ленту сделок, доступно 50 последних сделок по инструменту
+* Initialize trades, avalable 100 last deals on instrument
 
 ### Response Trades incremental changes
 <code>
@@ -71,9 +71,9 @@ socket.send('[1103, [1, 2]]');
 [5,1,[1619713,5,1513217117]]
 ```
 
-* Обновить ленту сделок
+* Update trades
 
 ### Trades update logic 
 
-* Если Amount > 0 сделка на **покупку**.
-* Если Amount < 0 сделка на **продажу**.
+* If volume > 0 - **buy** deal (taker is buyer)
+* If volume < 0 - **sell** dela (taker is seller)
