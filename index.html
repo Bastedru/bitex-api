@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>bitex.one API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,9 +211,6 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
@@ -225,278 +222,1568 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#instrument-params" class="toc-h1 toc-link" data-title="Instrument params">Instrument params</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#request" class="toc-h2 toc-link" data-title="Request">Request</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#instrument-statistics" class="toc-h1 toc-link" data-title="Instrument statistics">Instrument statistics</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#response-2" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#order-book" class="toc-h1 toc-link" data-title="Order Book">Order Book</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request-order-book-subscribe" class="toc-h2 toc-link" data-title="Request Order Book subscribe">Request Order Book subscribe</a>
+                  </li>
+                  <li>
+                    <a href="#request-order-book-unsubscribe" class="toc-h2 toc-link" data-title="Request Order Book unsubscribe">Request Order Book unsubscribe</a>
+                  </li>
+                  <li>
+                    <a href="#response-order-book-clear" class="toc-h2 toc-link" data-title="Response Order Book clear">Response Order Book clear</a>
+                  </li>
+                  <li>
+                    <a href="#response-order-book-snapshot" class="toc-h2 toc-link" data-title="Response Order Book snapshot">Response Order Book snapshot</a>
+                  </li>
+                  <li>
+                    <a href="#response-order-book-incremental-changes" class="toc-h2 toc-link" data-title="Response Order Book incremental changes">Response Order Book incremental changes</a>
+                  </li>
+                  <li>
+                    <a href="#order-book-update-logic" class="toc-h2 toc-link" data-title="Order Book update logic">Order Book update logic</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#trades" class="toc-h1 toc-link" data-title="Trades">Trades</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request-trades-subscribe" class="toc-h2 toc-link" data-title="Request Trades subscribe">Request Trades subscribe</a>
+                  </li>
+                  <li>
+                    <a href="#request-trades-unsubscribe" class="toc-h2 toc-link" data-title="Request Trades unsubscribe">Request Trades unsubscribe</a>
+                  </li>
+                  <li>
+                    <a href="#response-trades-clear" class="toc-h2 toc-link" data-title="Response Trades clear">Response Trades clear</a>
+                  </li>
+                  <li>
+                    <a href="#response-trades-snapshot" class="toc-h2 toc-link" data-title="Response Trades snapshot">Response Trades snapshot</a>
+                  </li>
+                  <li>
+                    <a href="#response-trades-incremental-changes" class="toc-h2 toc-link" data-title="Response Trades incremental changes">Response Trades incremental changes</a>
+                  </li>
+                  <li>
+                    <a href="#trades-update-logic" class="toc-h2 toc-link" data-title="Trades update logic">Trades update logic</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request" class="toc-h2 toc-link" data-title="Request">Request</a>
+                  </li>
+                  <li>
+                    <a href="#request-parameters" class="toc-h2 toc-link" data-title="Request parameters">Request parameters</a>
+                  </li>
+                  <li>
+                    <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+                  <li>
+                    <a href="#order-snapshot" class="toc-h2 toc-link" data-title="Order Snapshot">Order Snapshot</a>
+                  </li>
+                  <li>
+                    <a href="#position-snapshot" class="toc-h2 toc-link" data-title="Position Snapshot">Position Snapshot</a>
+                  </li>
+                  <li>
+                    <a href="#balance-snapshot" class="toc-h2 toc-link" data-title="Balance Snapshot">Balance Snapshot</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#order" class="toc-h1 toc-link" data-title="Order">Order</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#add-order" class="toc-h2 toc-link" data-title="Add Order">Add Order</a>
+                  </li>
+                  <li>
+                    <a href="#move-order" class="toc-h2 toc-link" data-title="Move Order">Move Order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-order" class="toc-h2 toc-link" data-title="Cancel Order">Cancel Order</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#commands" class="toc-h1 toc-link" data-title="Commands">Commands</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#public-request" class="toc-h2 toc-link" data-title="Public request">Public request</a>
+                  </li>
+                  <li>
+                    <a href="#public-response" class="toc-h2 toc-link" data-title="Public response">Public response</a>
+                  </li>
+                  <li>
+                    <a href="#authorized-request" class="toc-h2 toc-link" data-title="Authorized request">Authorized request</a>
+                  </li>
+                  <li>
+                    <a href="#authorized-response" class="toc-h2 toc-link" data-title="Authorized response">Authorized response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#error-codes" class="toc-h1 toc-link" data-title="Error codes">Error codes</a>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://www.bitex.one/form/form-registration/'>Sign Up for a Developer Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>The API is implemented via WebSocket, connection address: ws://ws.bitex.one/ws</p>
+<h1 id='instrument-params'>Instrument params</h1>
+<p>Request instrument parameters.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Example:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Request</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1104,[]]'</span><span class="p">);</span>
+<span class="c1">// Response</span>
+<span class="p">[</span><span class="mi">1105</span><span class="p">,[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.075</span><span class="p">,</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">201</span><span class="p">,</span><span class="mi">501</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">14400</span><span class="p">,</span><span class="mi">28800</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="s2">"BCHUSD-12.18"</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.075</span><span class="p">,</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1545998400000</span><span class="p">,</span><span class="mi">102</span><span class="p">,</span><span class="mi">313</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">402</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">102</span><span class="p">,</span><span class="s2">"BCHUSDi"</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">201</span><span class="p">,</span><span class="s2">"BTCUSDm"</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">312</span><span class="p">,</span><span class="s2">"BTCUSD-12.18m"</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">511</span><span class="p">,</span><span class="s2">"EOSUSDf_avg_8h"</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+      <span class="p">]</span>
+<span class="p">]</span>
+</code></pre><h3 id='request'>Request</h3>
+<p><code>
+[1104,[]]
+</code></p>
+<h3 id='response'>Response</h3>
+<p><code>
+[ins_id,ins_name,tick_size,price_min,price_max,volume_min,volume_max,precision,comiss_taker,
+comiss_maker,tick_value,maintenance,leverage,ins_type,expiration_time,index_id,mark_price_id,
+funding_index_id,expiration_index_id,funding_begin_time,funding_period_time,expiration_comiss]
+</code></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Required</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
+<td>ins_id</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
+</tr>
+<tr>
+<td>ins_name</td>
+<td>true</td>
+<td>string</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>tick_size</td>
+<td>true</td>
+<td>int32</td>
+<td>Minimum price step</td>
+</tr>
+<tr>
+<td>price_min</td>
+<td>true</td>
+<td>int32</td>
+<td>Minimum price limit</td>
+</tr>
+<tr>
+<td>price_max</td>
+<td>true</td>
+<td>int32</td>
+<td>Maximum price limit</td>
+</tr>
+<tr>
+<td>volume_min</td>
+<td>true</td>
+<td>int32</td>
+<td>Minimum order volume</td>
+</tr>
+<tr>
+<td>volume_max</td>
+<td>true</td>
+<td>int32</td>
+<td>Maximum order volume</td>
+</tr>
+<tr>
+<td>precision</td>
+<td>true</td>
+<td>int8</td>
+<td>Number of decimal places in the instrument price</td>
+</tr>
+<tr>
+<td>comiss_taker</td>
+<td>true</td>
+<td>double</td>
+<td>Deal commission for taker order, %</td>
+</tr>
+<tr>
+<td>comiss_maker</td>
+<td>true</td>
+<td>double</td>
+<td>Deal commission for maker order, %</td>
+</tr>
+<tr>
+<td>tick_value</td>
+<td>true</td>
+<td>int32</td>
+<td>Cost of minimum price step</td>
+</tr>
+<tr>
+<td>maintenance</td>
+<td>true</td>
+<td>double</td>
+<td>Maintenance margin, %</td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>true</td>
+<td>uint8</td>
+<td>Leverage</td>
+</tr>
+<tr>
+<td>ins_type</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument type: <br>1 - Swap contract<br>2 - Futures contract<br>5 - Instrument price index<br>6 - Instrument mark price<br>7 - avg 30m price index (expiration price)<br>8 - avg 8h index (funding value index)</td>
+</tr>
+<tr>
+<td>expiration_time</td>
+<td>true</td>
+<td>uint64</td>
+<td>Futures expiration time in ms, since Jan 01 1970. (UTC)</td>
+</tr>
+<tr>
+<td>index_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Index price identificator</td>
+</tr>
+<tr>
+<td>mark_price_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Mark price identificator</td>
+</tr>
+<tr>
+<td>funding_index_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Funding index identificator</td>
+</tr>
+<tr>
+<td>expiration_index_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Expiration index identificator</td>
+</tr>
+<tr>
+<td>funding_begin_time</td>
+<td>true</td>
+<td>uint32</td>
+<td>Funding begin time in seconds since 12:00 AM (UTC)</td>
+</tr>
+<tr>
+<td>funding_period_time</td>
+<td>true</td>
+<td>uint32</td>
+<td>Funding period time in seconds</td>
+</tr>
+<tr>
+<td>expiration_comiss</td>
+<td>true</td>
+<td>double</td>
+<td>Expiration commission, %</td>
 </tr>
 </tbody></table>
+<h1 id='instrument-statistics'>Instrument statistics</h1>
+<p>In first time after connect client receives statistics on all instruments. Then the data comes as it changes.</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Response</span>
+<span class="p">[</span><span class="mi">1107</span><span class="p">,[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">62735</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="o">-</span><span class="mi">287</span><span class="p">,</span><span class="mi">200203586</span><span class="p">,</span><span class="mi">7638572</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">4856</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">154</span><span class="p">,</span><span class="mi">209799727</span><span class="p">,</span><span class="mi">7873820</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">102</span><span class="p">,</span><span class="mi">4370</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">332</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">209</span><span class="p">,</span><span class="mi">1829</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">139</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">301</span><span class="p">,</span><span class="mi">62725</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">464</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">404</span><span class="p">,</span><span class="mi">5114</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">263</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">509</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+      <span class="p">]</span>
+<span class="p">]</span>
+</code></pre><h3 id='response-2'>Response</h3>
+<p><code>
+[ins_id,last_deal_price,last_deal_volume,change_24h,volume_24h,open_interest]
+</code></p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>ins_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
+</tr>
+<tr>
+<td>last_deal_price</td>
+<td>true</td>
+<td>int32</td>
+<td>Last deal price</td>
+</tr>
+<tr>
+<td>last_deal_volume</td>
+<td>true</td>
+<td>int32</td>
+<td>Last deal volume</td>
+</tr>
+<tr>
+<td>change_24h</td>
+<td>true</td>
+<td>int32</td>
+<td>Price change for the last 24 hours</td>
+</tr>
+<tr>
+<td>volume_24h</td>
+<td>true</td>
+<td>int64</td>
+<td>Trade volume for the last 24 hours</td>
+</tr>
+<tr>
+<td>open_interest</td>
+<td>true</td>
+<td>int64</td>
+<td>Open interest</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='order-book'>Order Book</h1>
+<aside class="notice">Order book available only on Swap contracts (ins_type=1) and Futures contracts (ins_type=2)</aside>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<blockquote>
+<p>Order Book subscribe:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Subscribe on order book for ins_id = 1</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1100, [1]]'</span><span class="p">);</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<span class="c1">// Subscribe on order book for ins_id = 1 and 2</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1100, [1, 2]]'</span><span class="p">);</span>
+</code></pre><h3 id='request-order-book-subscribe'>Request Order Book subscribe</h3>
+<p><code>
+[1100,[ins_id]]
+</code></p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<blockquote>
+<p>Order Book unsubscribe:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Unsubscribe on order book for ins_id = 1</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1101, [1]]'</span><span class="p">);</span>
+
+<span class="c1">// Unsubscribe on order book for ins_id = 1 and 2</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1101, [1, 2]]'</span><span class="p">);</span>
+</code></pre><h3 id='request-order-book-unsubscribe'>Request Order Book unsubscribe</h3>
+<p><code>
+[1101,[ins_id]]
+</code></p>
+<h3 id='response-order-book-clear'>Response Order Book clear</h3>
+<p><code>
+[1,ins_id,[]]
+</code></p>
+
+<blockquote>
+<p>Order Book clear:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,[]]</span>
+</code></pre>
+<ul>
+<li>Clear all data on order book</li>
+</ul>
+<h3 id='response-order-book-snapshot'>Response Order Book snapshot</h3>
+<p><code>
+[2,IsinId,[[Price,Amount]]]
+</code></p>
+
+<blockquote>
+<p>Order Book snapshot:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span>
+        <span class="p">[</span><span class="mi">1622497</span><span class="p">,</span><span class="o">-</span><span class="mi">21488</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1622498</span><span class="p">,</span><span class="o">-</span><span class="mi">11753</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1622499</span><span class="p">,</span><span class="mi">8598</span><span class="p">]</span>
+     <span class="p">]</span>
+<span class="p">]</span>
+</code></pre>
+<ul>
+<li>Initialize order book</li>
+</ul>
+<h3 id='response-order-book-incremental-changes'>Response Order Book incremental changes</h3>
+<p><code>
+[3,IsinId,[price,volume]]
+</code></p>
+
+<blockquote>
+<p>Order Book incremental changes:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1622497</span><span class="p">,</span><span class="o">-</span><span class="mi">2148</span><span class="p">]]</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1622498</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1622499</span><span class="p">,</span><span class="mi">8248</span><span class="p">]]</span>
+</code></pre>
+<ul>
+<li>Need update the volume in each price level of the order book</li>
+</ul>
+<h3 id='order-book-update-logic'>Order Book update logic</h3>
+<ul>
+<li>If volume = 0 - <strong>delete</strong> price level on <strong>ASK</strong> and <strong>BID</strong> side</li>
+<li>If volume &gt; 0 - <strong>update</strong> price level on <strong>BID</strong> side</li>
+<li>If volume &lt; 0 - <strong>update</strong> price level on <strong>ASK</strong> side</li>
+</ul>
+<h1 id='trades'>Trades</h1>
+<blockquote>
+<p>Trades subscribe:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Subscribe on trades for ins_id = 1</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1102, [1]]'</span><span class="p">);</span>
+
+<span class="c1">// Subscribe on trades for ins_id = 1 and 2</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1102, [1, 2]]'</span><span class="p">);</span>
+</code></pre><h3 id='request-trades-subscribe'>Request Trades subscribe</h3>
+<p><code>
+[1102,[ins_id]]
+</code></p>
+
+<blockquote>
+<p>Trades unsubscribe:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Unsubscribe on trades for ins_id = 1</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1103, [1]]'</span><span class="p">);</span>
+
+<span class="c1">// Unsubscribe on trades for ins_id = 1 and 2</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1103, [1, 2]]'</span><span class="p">);</span>
+</code></pre><h3 id='request-trades-unsubscribe'>Request Trades unsubscribe</h3>
+<p><code>
+[1103,[ins_id]]
+</code></p>
+<h3 id='response-trades-clear'>Response Trades clear</h3>
+<p><code>
+[4,IsinId,[]]
+</code></p>
+
+<blockquote>
+<p>Trades clear:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,[]]</span>
+</code></pre>
+<ul>
+<li>Clear all trades</li>
+</ul>
+<h3 id='response-trades-snapshot'>Response Trades snapshot</h3>
+<p><code>
+[5,IsinId,[Price,Amount,Timestamp]]
+</code></p>
+
+<blockquote>
+<p>Trades snapshot:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1620580</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span><span class="mi">1513216484</span><span class="p">]]</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1619822</span><span class="p">,</span><span class="o">-</span><span class="mi">1790</span><span class="p">,</span><span class="mi">1513216586</span><span class="p">]]</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1620887</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">1513216631</span><span class="p">]]</span>
+</code></pre>
+<ul>
+<li>Initialize trades, avalable 100 last deals on instrument</li>
+</ul>
+<h3 id='response-trades-incremental-changes'>Response Trades incremental changes</h3>
+<p><code>
+[5,IsinId,[Price,Amount,Timestamp]]
+</code></p>
+
+<blockquote>
+<p>Trades incremental changes:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1619715</span><span class="p">,</span><span class="o">-</span><span class="mi">4100</span><span class="p">,</span><span class="mi">1513217115</span><span class="p">]]</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1619713</span><span class="p">,</span><span class="o">-</span><span class="mi">876</span><span class="p">,</span><span class="mi">1513217115</span><span class="p">]]</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1619713</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1513217117</span><span class="p">]]</span>
+</code></pre>
+<ul>
+<li>Update trades</li>
+</ul>
+<h3 id='trades-update-logic'>Trades update logic</h3>
+<ul>
+<li>If volume &gt; 0 - <strong>buy</strong> deal (taker is buyer)</li>
+<li>If volume &lt; 0 - <strong>sell</strong> dela (taker is seller)</li>
+</ul>
+<h1 id='authentication'>Authentication</h1>
+<p>Use ApiKey and private key for authorization.</p>
+
+<blockquote>
+<p>For authorization use this code:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">ApiKey</span> <span class="o">=</span> <span class="s2">"ieW-nrNVN4qFJsMEiwtVqyjA"</span><span class="p">;</span>
+<span class="nx">Secret</span> <span class="o">=</span> <span class="s2">"5fMhM8dqOzWs22heuSETNw_ED3BuXx_TBTboKJKlS8bFLIrm"</span><span class="p">;</span>
+
+<span class="nx">Nonce</span> <span class="o">=</span> <span class="s2">"1510929522353"</span>
+<span class="nx">Signature</span> <span class="o">=</span> <span class="nx">HMAC_SHA256</span><span class="p">(</span><span class="nx">Nonce</span><span class="p">,</span> <span class="nx">Secret</span><span class="p">)</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1000,[ApiKey,Nonce,Signature]]'</span><span class="p">);</span>
+<span class="c1">// Authorization success response</span>
+<span class="p">[</span><span class="mi">1001</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Welcome to bitex.one Realtime API."</span><span class="p">]]</span>
+<span class="c1">// Authorization error response</span>
+<span class="p">[</span><span class="mi">1001</span><span class="p">,[</span><span class="mi">16</span><span class="p">]]</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example message:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[1000,["ieW-nrNVN4qFJsMEiwtVqyjA","1510929522353","2e82ed97579f24976295cd895e071402c1776612015e15d1acff112885ae6c91"]]'</span><span class="p">);</span>
+</code></pre><h3 id='request'>Request</h3>
+<p><code>
+[1000,[api_key,nonce,signature]]
+</code></p>
+<h3 id='request-parameters'>Request parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>api_key</td>
+<td>true</td>
+<td>string</td>
+<td>API key</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>true</td>
+<td>string</td>
+<td>Nonce must be a number</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>true</td>
+<td>string</td>
+<td>Signature</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
+<h3 id='response'>Response</h3>
+<p><code>
+[1001,[code,message]]
+</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>uint8</td>
+<td>Result code</td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>Message string</td>
+</tr>
+</tbody></table>
+<h2 id='order-snapshot'>Order Snapshot</h2>
+<p>If authorization succeed client gets orders snapshot</p>
+<h3 id='response-clear'>Response clear</h3>
+<blockquote>
+<p>Response Clear:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Clear all client orders</span>
+<span class="p">[</span><span class="mi">110</span><span class="p">,[]]</span>
+</code></pre>
+<p><code>
+[110,[]]
+</code></p>
+<h3 id='response-snapshot'>Response snapshot</h3>
+<blockquote>
+<p>Response Snapshot:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// All orders snapshot</span>
+<span class="p">[</span><span class="mi">111</span><span class="p">,[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000007</span><span class="p">,</span><span class="mi">72050</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1534029000</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000005</span><span class="p">,</span><span class="mi">720510000000</span><span class="p">,</span><span class="o">-</span><span class="mi">64050000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1534029000</span><span class="p">]]]</span>
+</code></pre>
+<p><code>
+[111,[[ClientOrderId,IsinId,OrderId,Price,Amount,Status,Time]]]
+</code></p>
+<h3 id='response-parameters'>Response parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>ins_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>uint64</td>
+<td>System order identificator</td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>int32</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>int32</td>
+<td>Order volume in contracts</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>uint8</td>
+<td>Order status</td>
+</tr>
+<tr>
+<td>time</td>
+<td>true</td>
+<td>uint64</td>
+<td>Time of last order change in sec, since Jan 01 1970. (UTC)</td>
+</tr>
+</tbody></table>
+<h3 id='amount'>Amount</h3>
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+If volume < 0 - sell order. If volume > 0 - buy order
 </aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
+<h3 id='status'>Status</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Value</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>0</td>
+<td>Order canceled</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>1</td>
+<td>Order added</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>2</td>
+<td>Order executed</td>
+</tr>
+</tbody></table>
+<h2 id='position-snapshot'>Position Snapshot</h2>
+<p>If authorization succeed client gets positions snapshot</p>
+<h3 id='response-clear-2'>Response clear</h3>
+<blockquote>
+<p>Response Clear:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Clear all client positions</span>
+<span class="p">[</span><span class="mi">112</span><span class="p">,[]]</span>
+</code></pre>
+<p><code>
+[112,[]]
+</code></p>
+<h3 id='response-snapshot-2'>Response snapshot</h3>
+<blockquote>
+<p>Response Snapshot:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Snapshot all client positions</span>
+<span class="p">[</span><span class="mi">113</span><span class="p">,[[</span><span class="mi">9</span><span class="p">,</span><span class="mi">18462520000001</span><span class="p">,</span><span class="o">-</span><span class="mi">2000</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">630330330000000</span><span class="p">,</span><span class="mi">1000</span><span class="p">]]]</span>
+</code></pre>
+<p><code>
+[113,[[ins_id,price_avg,volume]]]
+</code></p>
+<h3 id='response-parameters-2'>Response parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ins_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>price_avg</td>
+<td>true</td>
+<td>int64</td>
+<td>Average price multiplied by 10^10</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>volume</td>
+<td>true</td>
+<td>int32</td>
+<td>Position volume</td>
+</tr>
+</tbody></table>
+<h3 id='volume'>volume</h3>
+<aside class="notice">
+volume < 0 - short position, volume > 0 - long position
+</aside>
+<h2 id='balance-snapshot'>Balance Snapshot</h2>
+<p>All balance values in satoshi (1 satoshi = 0.00000001 BTC).</p>
+<h3 id='response-snapshot-3'>Response snapshot</h3>
+<blockquote>
+<p>Response Snapshot:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Balance snapshot</span>
+<span class="p">[</span><span class="mi">114</span><span class="p">,[</span><span class="mi">2480662205</span><span class="p">,</span><span class="mi">5754608835</span><span class="p">,</span><span class="mi">35127000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">7025400</span><span class="p">,</span><span class="o">-</span><span class="mi">810125</span><span class="p">,</span><span class="mi">5753798710</span><span class="p">,</span><span class="mi">5718671710</span><span class="p">,</span><span class="mi">2963326</span><span class="p">]]</span>
+</code></pre>
+<p><code>
+[114,[realized_pnl,wallet_balance,position_margin,order_margin,maintenance_margin,<br>
+unrealized_pnl,margin_balance,available_balance,referral_profit]]
+</code></p>
+<h3 id='response-parameters-3'>Response parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>realized_pnl</td>
+<td>true</td>
+<td>int64</td>
+<td>Realized profit and loss</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>wallet_balance</td>
+<td>true</td>
+<td>int64</td>
+<td>Funds on account exclude unrealized_pnl</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>position_margin</td>
+<td>true</td>
+<td>int64</td>
+<td>Margin, reserved by all open positions</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>order_margin</td>
+<td>true</td>
+<td>int64</td>
+<td>Margin, reserved by all active orders</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>maintenance_margin</td>
+<td>true</td>
+<td>int64</td>
+<td>Critical level of margin. When wallet_balance &lt; maintenance_margin liquidation begins</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>unrealized_pnl</td>
+<td>true</td>
+<td>int64</td>
+<td>Sum profit by all open positions</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>margin_balance</td>
+<td>true</td>
+<td>int64</td>
+<td>wallet_balance + unrealized_pnl</td>
+</tr>
+<tr>
+<td>available_balance</td>
+<td>true</td>
+<td>int64</td>
+<td>wallet_balance - position_margin - order_margin + unrealized_pnl</td>
+</tr>
+<tr>
+<td>referral_profit</td>
+<td>true</td>
+<td>int64</td>
+<td>Refferal program profit</td>
+</tr>
+</tbody></table>
+<h1 id='order'>Order</h1><h2 id='add-order'>Add Order</h2>
+<aside class="warning">
+Authorization required!
+</aside>
+<h3 id='request'>Request</h3>
+<p><code>
+[100,[[client_order_id,ins_id,price,volume,type]]]
+</code></p>
+
+<blockquote>
+<p>Add Order:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Add sell order</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[100,[[1,1,72051,-64,1]]]'</span><span class="p">);</span>
+<span class="c1">// Matching response, order placed</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000046</span><span class="p">,</span><span class="mi">72051</span><span class="p">,</span><span class="o">-</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Add sell and buy orders</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[100,[[1,1,72051,-64,1],[2,1,72050,64,1]]]'</span><span class="p">);</span>
+<span class="c1">// Matching response</span>
+<span class="c1">// Partial first order execution</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000047</span><span class="p">,</span><span class="mi">72051</span><span class="p">,</span><span class="o">-</span><span class="mi">64</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">230981</span><span class="p">,</span><span class="mi">1649637</span><span class="p">,</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">2120</span><span class="p">]]</span>
+<span class="c1">// First order executed fully</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000047</span><span class="p">,</span><span class="mi">72051</span><span class="p">,</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">230982</span><span class="p">,</span><span class="mi">1649500</span><span class="p">,</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">636</span><span class="p">]]</span>
+<span class="c1">// Second order placed</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000048</span><span class="p">,</span><span class="mi">72050</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Add sell and buy orders</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[100,[[1,1,72051,-64,1],[2,1,72050,64,1]]]'</span><span class="p">);</span>
+<span class="c1">// Error response. Error code = 18 (NoMoney)</span>
+<span class="p">[</span><span class="mi">200</span><span class="p">,[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">18</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">18</span><span class="p">]]]</span>
+</code></pre><h3 id='request-parameters'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>ins_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>int32</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>int32</td>
+<td>Order volume</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>uint8</td>
+<td>Order type</td>
+</tr>
+</tbody></table>
+<h3 id='volume'>volume</h3>
+<aside class="notice">
+volume < 0 - sell order, volume > 0 - buy order
+</aside>
+<h3 id='type'>type</h3>
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Limit.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Market.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+If type = 2 (market) then price field ignored
+</aside>
+<h3 id='error-response-message'>Error response message</h3>
+<p><code>
+[200,[[client_order_id,code]]]
+</code></p>
+<h3 id='error-response-message-parameters'>Error response message parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>uint8</td>
+<td>Error code</td>
+</tr>
+</tbody></table>
+<h3 id='response-matching-engine-parameters'>Response matching engine parameters</h3>
+<p><code>
+[100,[client_order_id,ins_id,order_id,price,volume,type,deal_id,deal_price,deal_amount,leaves_volume,time,fee]]
+</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>ins_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>uint64</td>
+<td>Order system identificator</td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>int32</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>int32</td>
+<td>Order volume</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>uint8</td>
+<td>Type of action with order</td>
+</tr>
+<tr>
+<td>deal_id</td>
+<td>true</td>
+<td>uint64</td>
+<td>Deal system identificator</td>
+</tr>
+<tr>
+<td>deal_price</td>
+<td>true</td>
+<td>int32</td>
+<td>Deal price</td>
+</tr>
+<tr>
+<td>deal_volume</td>
+<td>true</td>
+<td>int32</td>
+<td>Deal volume</td>
+</tr>
+<tr>
+<td>leave_volume</td>
+<td>true</td>
+<td>int32</td>
+<td>Leave volume in order</td>
+</tr>
+<tr>
+<td>time</td>
+<td>true</td>
+<td>uint64</td>
+<td>Time operation in sec, since Jan 01 1970. (UTC)</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>true</td>
+<td>int32</td>
+<td>Comission for operation in satoshi</td>
+</tr>
+</tbody></table>
+<h3 id='type-2'>type</h3>
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Order canceled</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Order added</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Order executed</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Order canceled due to order move</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Order canceled due to contract expiration</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Deal generated by expiration module</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Funding transaction</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Deleverege module deal</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Liquidation module order add</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Liquidation module order cancel</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Liquidation position deal</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Risk management order cancel</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Deleverage module order cancel</td>
+</tr>
+</tbody></table>
+<h2 id='move-order'>Move Order</h2>
+<aside class="warning">
+Authorization required!
+</aside>
+<h3 id='request-2'>Request</h3>
+<p><code>
+[101,[[client_order_id,ins_id,order_id,price,amount]]]
+</code></p>
+
+<blockquote>
+<p>Move Order:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Move buy order</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[101,[[2,1,100000048,72150,30]]]'</span><span class="p">);</span>
+<span class="c1">// Front server response</span>
+<span class="p">[</span><span class="mi">201</span><span class="p">,[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]]]</span>
+<span class="c1">// Matching response. Order canceled due to order move (type=3)</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000048</span><span class="p">,</span><span class="mi">72050</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="c1">// Matching response. Order placed (type=1)</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000049</span><span class="p">,</span><span class="mi">72150</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Move two orders request</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[101,[[1,1,100000048,72051,-64,1],[2,1,100000047,72050,64,1]]]'</span><span class="p">);</span>
+<span class="c1">// Error response. Error code = 15 (OrderNotFound) </span>
+<span class="p">[</span><span class="mi">201</span><span class="p">,[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">15</span><span class="p">]]]</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Move two orders request</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[101,[[2,1,100000001,72150,30],[1,1,100000000,72051,-64]]]'</span><span class="p">);</span>
+<span class="c1">// Matching response. First order move succsess</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000001</span><span class="p">,</span><span class="mi">72050</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000002</span><span class="p">,</span><span class="mi">72150</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="c1">// Error response. Error code = 15 (OrderNotFound), </span>
+<span class="p">[</span><span class="mi">201</span><span class="p">,[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">]]]</span>
+</code></pre><h3 id='request-parameters-2'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>ins_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>uint64</td>
+<td>Order system identificator</td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>int32</td>
+<td>Order price</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>int32</td>
+<td>New order volume</td>
+</tr>
+</tbody></table>
+<h3 id='error-response-message-2'>Error response message</h3>
+<p><code>
+[201,[[client_order_id,code]]]
+</code></p>
+<h3 id='error-response-message-parameters-2'>Error response message parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>uint8</td>
+<td>Response code</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-order'>Cancel Order</h2>
+<aside class="warning">
+Authorization required!
+</aside>
+<h3 id='request-3'>Request</h3>
+<p><code>
+[103,[[client_order_id,ins_id,order_id]]]
+</code></p>
+
+<blockquote>
+<p>Cancel Order:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Cancel order</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[103,[[1,1,100000002]]]'</span><span class="p">);</span>
+<span class="c1">// Matching response</span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000002</span><span class="p">,</span><span class="mi">72150</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Cancel two orders</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'[103,[[1,1,100000003],[2,1,100000004]]]'</span><span class="p">);</span>
+<span class="c1">// Matching response. Second order canceled </span>
+<span class="p">[</span><span class="mi">100</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000004</span><span class="p">,</span><span class="mi">72050</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1526781600</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="c1">// Matching response. Error code = 15 (OrderNotFound) </span>
+<span class="p">[</span><span class="mi">203</span><span class="p">,[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">]]]</span>
+</code></pre><h3 id='request-parameters-3'>Request parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>ins_id</td>
+<td>true</td>
+<td>uint16</td>
+<td>Instrument identificator</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>uint64</td>
+<td>System order id</td>
+</tr>
+</tbody></table>
+<h3 id='error-response-message-3'>Error response message</h3>
+<p><code>
+[203,[[client_order_id,code]]]
+</code></p>
+<h3 id='error-response-message-parameters-3'>Error response message parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_order_id</td>
+<td>true</td>
+<td>uint32</td>
+<td>Client defined order id</td>
+</tr>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>uint8</td>
+<td>Response code</td>
+</tr>
+</tbody></table>
+<h1 id='commands'>Commands</h1>
+<p>Websocket API uses next commands</p>
+<h2 id='public-request'>Public request</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1000</td>
+<td>AuthorizationRequest</td>
+<td>Authorization request</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>SubscribeOrderBook</td>
+<td>Subscribe to order book of a specific instrument</td>
+</tr>
+<tr>
+<td>1101</td>
+<td>UnSubscribeOrderBook</td>
+<td>Unsubscribe to order book of a specific instrument</td>
+</tr>
+<tr>
+<td>1102</td>
+<td>SubscribeTrade</td>
+<td>Subscribe to trades of a specific instrument</td>
+</tr>
+<tr>
+<td>1103</td>
+<td>UnSubscribeTrade</td>
+<td>Unsubscribe to trades of a specific instrument</td>
+</tr>
+<tr>
+<td>1104</td>
+<td>InstrumentParamsRequest</td>
+<td>Request all instrument parameters</td>
+</tr>
+</tbody></table>
+<h2 id='public-response'>Public response</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>OrderBookClearResponse</td>
+<td>Clear order book of a specific instrument</td>
+</tr>
+<tr>
+<td>2</td>
+<td>OrderBookSnapshotResponse</td>
+<td>Snapshot of order book</td>
+</tr>
+<tr>
+<td>3</td>
+<td>OrderBookIncrementalResponse</td>
+<td>Incremental messages for order book</td>
+</tr>
+<tr>
+<td>4</td>
+<td>TradeClearResponse</td>
+<td>Clear trades of specific instrument</td>
+</tr>
+<tr>
+<td>5</td>
+<td>TradeIncrementalResponse</td>
+<td>Incremental messages for trades</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>AuthorizationResponse</td>
+<td>Authorization response message</td>
+</tr>
+<tr>
+<td>1105</td>
+<td>InstrumentParamsResponse</td>
+<td>Request all instrument parameters</td>
+</tr>
+<tr>
+<td>1107</td>
+<td>InstrumentStatisticResponse</td>
+<td>Instrument statistic message</td>
+</tr>
+</tbody></table>
+<h2 id='authorized-request'>Authorized request</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>AddOrderRequest</td>
+<td>Add order request</td>
+</tr>
+<tr>
+<td>101</td>
+<td>MoveOrderNewVolumeRequest</td>
+<td>Move order request</td>
+</tr>
+<tr>
+<td>103</td>
+<td>CancelOrderRequest</td>
+<td>Cancel order request</td>
+</tr>
+</tbody></table>
+<h2 id='authorized-response'>Authorized response</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>MatchingEngineResponse</td>
+<td>Message from matching engine</td>
+</tr>
+<tr>
+<td>110</td>
+<td>ClientOrderClearResponse</td>
+<td>Clear client orders</td>
+</tr>
+<tr>
+<td>111</td>
+<td>ClientOrderSnapshotResponse</td>
+<td>Client orders snapshot</td>
+</tr>
+<tr>
+<td>112</td>
+<td>PositionClearResponse</td>
+<td>Clear client positions</td>
+</tr>
+<tr>
+<td>113</td>
+<td>PositionSnapshotResponse</td>
+<td>Client positions snapshot</td>
+</tr>
+<tr>
+<td>114</td>
+<td>BalanceResponse</td>
+<td>Client balance message</td>
+</tr>
+<tr>
+<td>200</td>
+<td>AddOrderResponse</td>
+<td>Add order error message</td>
+</tr>
+<tr>
+<td>201</td>
+<td>MoveOrderNewVolumeResponse</td>
+<td>Move order error message</td>
+</tr>
+<tr>
+<td>203</td>
+<td>CancelOrderResponse</td>
+<td>Cancel order error message</td>
+</tr>
+</tbody></table>
+<h1 id='error-codes'>Error codes</h1>
+<p>API uses next error codes.</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Accept</td>
+<td>Operation completed successfully</td>
+</tr>
+<tr>
+<td>2</td>
+<td>WrongDataFormat</td>
+<td>Wrong format of JSON</td>
+</tr>
+<tr>
+<td>3</td>
+<td>InstrumentNotFound</td>
+<td>Instrument not found in system</td>
+</tr>
+<tr>
+<td>4</td>
+<td>LotLimitExceeds</td>
+<td>Lot limit exceeds</td>
+</tr>
+<tr>
+<td>5</td>
+<td>IncorrectLotStep</td>
+<td>Lot must be integer type</td>
+</tr>
+<tr>
+<td>6</td>
+<td>PriceLimitExceeds</td>
+<td>Price value out of limit</td>
+</tr>
+<tr>
+<td>7</td>
+<td>IncorrectPriceStep</td>
+<td>Price is not a multiple of the minimum step</td>
+</tr>
+<tr>
+<td>8</td>
+<td>IncorrectOrderType</td>
+<td>Incorrect order type</td>
+</tr>
+<tr>
+<td>9</td>
+<td>IncorrectClientOrderID</td>
+<td>Incorrect value in client_order_id field</td>
+</tr>
+<tr>
+<td>10</td>
+<td>IncorrectOrderID</td>
+<td>Incorrect value in order_id field</td>
+</tr>
+<tr>
+<td>11</td>
+<td>IncorrectFieldType</td>
+<td>Incorrect field type</td>
+</tr>
+<tr>
+<td>12</td>
+<td>TooMuchOrders</td>
+<td>Too many orders in batch</td>
+</tr>
+<tr>
+<td>13</td>
+<td>UnknownCommand</td>
+<td>Uncnown command code</td>
+</tr>
+<tr>
+<td>14</td>
+<td>AuthorizationRequired</td>
+<td>Authorization required</td>
+</tr>
+<tr>
+<td>15</td>
+<td>OrderNotFound</td>
+<td>Order with order_id not found in system</td>
+</tr>
+<tr>
+<td>16</td>
+<td>AuthorizationError</td>
+<td>Authorization error</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Liquidation</td>
+<td>Liquidation process</td>
+</tr>
+<tr>
+<td>18</td>
+<td>NoMoney</td>
+<td>Not enoth money for operation</td>
+</tr>
+<tr>
+<td>19</td>
+<td>OrderLessThanOne</td>
+<td>Order volume less than one</td>
+</tr>
+<tr>
+<td>20</td>
+<td>TradeDisabled</td>
+<td>Trade disabled</td>
+</tr>
+<tr>
+<td>21</td>
+<td>NotEnothLiquidity</td>
+<td>Not enoth liquidity for operation</td>
+</tr>
+<tr>
+<td>22</td>
+<td>MaxPosExceeds</td>
+<td>Exceeds max position for current instrument</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
