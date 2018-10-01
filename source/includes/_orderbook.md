@@ -46,7 +46,7 @@ socket.send('[1101, [1, 2]]');
 
 ### Response Order Book snapshot
 <code>
-[2,IsinId,[[Price,Amount]]]
+[2,ins_id,[[price,volume]]]
 </code>
 
 > Order Book snapshot:
@@ -62,20 +62,35 @@ socket.send('[1101, [1, 2]]');
 
 * Initialize order book
 
+Parameter | Required | Type | Description
+--------- | ------- | ----- | -----------
+ins_id | true | uint16 | Instrument ID
+price | true | int32 | Order Book level price
+volume | true | int32 | Order Book level volume
+
 ### Response Order Book incremental changes
 <code>
-[3,IsinId,[price,volume]]
+[3,ins_id,[[price,volume]]]
 </code>
 
 > Order Book incremental changes:
 
 ```javascript
-[3,1,[1622497,-2148]]
-[3,1,[1622498,0]]
-[3,1,[1622499,8248]]
+[3,1,[
+        [1622497,-2148],
+        [1622498,0],
+        [1622499,8248]
+     ]
+]
 ```
 
 * Need update the volume in each price level of the order book
+
+Parameter | Required | Type | Description
+--------- | ------- | ----- | -----------
+ins_id | true | uint16 | Instrument ID
+price | true | int32 | Order Book level price
+volume | true | int32 | Order Book level volume
 
 ### Order Book update logic 
 

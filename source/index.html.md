@@ -13,6 +13,7 @@ includes:
   - trade
   - authentication
   - order
+  - floodcontrol
   - commands
   - errors
 

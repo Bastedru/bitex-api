@@ -76,11 +76,15 @@ If authorization succeed client gets orders snapshot
 
 ```javascript
 // All orders snapshot
-[111,[[2,1,100000007,72050,64,1,1534029000],[1,1,100000005,720510000000,-64050000,1,1534029000]]]
+[111,[
+        [2,1,100000007,72050,64,1,1534029000],
+        [1,1,100000005,720510000000,-64050000,1,1534029000]
+     ]
+]
 ```
 
 <code>
-[111,[[ClientOrderId,IsinId,OrderId,Price,Amount,Status,Time]]]
+[111,[[client_order_id,ins_id,order_id,price,volume,status,time]]]
 </code>
 
 ### Response parameters
@@ -88,14 +92,14 @@ If authorization succeed client gets orders snapshot
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
 client_order_id | true | uint32 | Client defined order id
-ins_id | true | uint16 | Instrument identificator
-order_id | true | uint64 | System order identificator
+ins_id | true | uint16 | Instrument ID
+order_id | true | uint64 | System order ID
 price | true | int32 | Order price
 volume | true | int32 | Order volume in contracts
 status | true | uint8 | Order status
 time | true | uint64 | Time of last order change in sec, since Jan 01 1970. (UTC) 
 
-### Amount
+### Volume
 
 <aside class="notice">
 If volume < 0 - sell order. If volume > 0 - buy order
@@ -140,7 +144,11 @@ If authorization succeed client gets positions snapshot
 
 ```javascript
 // Snapshot all client positions
-[113,[[9,18462520000001,-2000],[1,630330330000000,1000]]]
+[113,[
+        [9,18462520000001,-2000],
+        [1,630330330000000,1000]
+     ]
+]
 ```
 
 <code>

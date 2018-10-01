@@ -19,7 +19,10 @@ Authorization required!
 // Add sell order
 socket.send('[100,[[1,1,72051,-64,1]]]');
 // Matching response, order placed
-[100,[1,1,100000046,72051,-64,1,0,0,0,0,1526781600,0]]
+[100,[
+        [1,1,100000046,72051,-64,1,0,0,0,0,1526781600,0]
+     ]
+]
 ```
 
 ```javascript
@@ -27,11 +30,15 @@ socket.send('[100,[[1,1,72051,-64,1]]]');
 socket.send('[100,[[1,1,72051,-64,1],[2,1,72050,64,1]]]');
 // Matching response
 // Partial first order execution
-[100,[1,1,100000047,72051,-64,2,230981,1649637,-50,-14,1526781600,2120]]
 // First order executed fully
-[100,[1,1,100000047,72051,-14,2,230982,1649500,-14,0,1526781600,636]]
 // Second order placed
-[100,[2,1,100000048,72050,64,1,0,0,0,0,1526781600,0]]
+[100,[
+        [1,1,100000047,72051,-64,2,230981,1649637,-50,-14,1526781600,2120],
+        [1,1,100000047,72051,-14,2,230982,1649500,-14,0,1526781600,636],
+        [2,1,100000048,72050,64,1,0,0,0,0,1526781600,0]
+     ]
+]
+
 ```
 
 ```javascript
@@ -45,8 +52,8 @@ socket.send('[100,[[1,1,72051,-64,1],[2,1,72050,64,1]]]');
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-client_order_id | true | uint32 | Client defined order id
-ins_id | true | uint16 | Instrument identificator
+client_order_id | true | uint32 | Client defined order ID
+ins_id | true | uint16 | Instrument ID
 price | true | int32 | Order price
 volume | true | int32 | Order volume
 type | true | uint8 | Order type
@@ -78,24 +85,24 @@ If type = 2 (market) then price field ignored
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-client_order_id | true | uint32 | Client defined order id
+client_order_id | true | uint32 | Client defined order ID
 code | true | uint8 | Error code
 
 ### Response matching engine parameters
 
 <code>
-[100,[client_order_id,ins_id,order_id,price,volume,type,deal_id,deal_price,deal_amount,leaves_volume,time,fee]]
+[100,[[client_order_id,ins_id,order_id,price,volume,type,deal_id,deal_price,deal_volume,leaves_volume,time,fee]]]
 </code>
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-client_order_id | true | uint32 | Client defined order id
-ins_id | true | uint16 | Instrument identificator
-order_id | true | uint64 | Order system identificator
+client_order_id | true | uint32 | Client defined order ID
+ins_id | true | uint16 | Instrument ID
+order_id | true | uint64 | Order system ID
 price | true | int32 | Order price
 volume | true | int32 | Order volume
 type | true | uint8 | Type of action with order
-deal_id | true | uint64 | Deal system identificator
+deal_id | true | uint64 | Deal system ID
 deal_price | true | int32 | Deal price
 deal_volume | true | int32 | Deal volume
 leave_volume | true | int32 | Leave volume in order
@@ -141,7 +148,7 @@ Authorization required!
 ### Request
 
 <code>
-[101,[[client_order_id,ins_id,order_id,price,amount]]]
+[101,[[client_order_id,ins_id,order_id,price,volume]]]
 </code>
 
 > Move Order:
@@ -149,12 +156,13 @@ Authorization required!
 ```javascript
 // Move buy order
 socket.send('[101,[[2,1,100000048,72150,30]]]');
-// Front server response
-[201,[[2,1]]]
-// Matching response. Order canceled due to order move (type=3)
-[100,[2,1,100000048,72050,64,3,0,0,0,0,1526781600,0]]
-// Matching response. Order placed (type=1)
-[100,[2,1,100000049,72150,30,1,0,0,0,0,1526781600,0]]
+// Order canceled due to order move (type=3)
+// Order placed (type=1)
+[100,[
+        [2,1,100000048,72050,64,3,0,0,0,0,1526781600,0],
+        [2,1,100000049,72150,30,1,0,0,0,0,1526781600,0]
+     ]
+]
 ```
 
 ```javascript
@@ -168,8 +176,11 @@ socket.send('[101,[[1,1,100000048,72051,-64,1],[2,1,100000047,72050,64,1]]]');
 // Move two orders request
 socket.send('[101,[[2,1,100000001,72150,30],[1,1,100000000,72051,-64]]]');
 // Matching response. First order move succsess
-[100,[2,1,100000001,72050,64,3,0,0,0,0,1526781600,0]]
-[100,[2,1,100000002,72150,30,1,0,0,0,0,1526781600,0]]
+[100,[
+        [2,1,100000001,72050,64,3,0,0,0,0,1526781600,0],
+        [2,1,100000002,72150,30,1,0,0,0,0,1526781600,0]
+     ]
+]
 // Error response. Error code = 15 (OrderNotFound), 
 [201,[[1,15]]]
 ```
@@ -178,9 +189,9 @@ socket.send('[101,[[2,1,100000001,72150,30],[1,1,100000000,72051,-64]]]');
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-client_order_id | true | uint32 | Client defined order id
-ins_id | true | uint16 | Instrument identificator
-order_id | true | uint64 | Order system identificator
+client_order_id | true | uint32 | Client defined order ID
+ins_id | true | uint16 | Instrument ID
+order_id | true | uint64 | Order system ID
 price | true | int32 | Order price
 volume | true | int32 | New order volume
 
@@ -194,7 +205,7 @@ volume | true | int32 | New order volume
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-client_order_id | true | uint32 | Client defined order id
+client_order_id | true | uint32 | Client defined order ID
 code | true | uint8 | Response code
 
 
@@ -227,15 +238,23 @@ Authorization required!
 ```javascript
 // Cancel order
 socket.send('[103,[[1,1,100000002]]]');
+socket.send('[103,[[2,1,100000005]]]');
 // Matching response
-[100,[1,1,100000002,72150,30,0,0,0,0,0,1526781600,0]]
+[100,[
+        [1,1,100000002,72150,30,0,0,0,0,0,1526781600,0],
+        [2,1,100000005,72350,30,0,0,0,0,0,1526781600,0]
+     ]
+]
 ```
 
 ```javascript
 // Cancel two orders
 socket.send('[103,[[1,1,100000003],[2,1,100000004]]]');
 // Matching response. Second order canceled 
-[100,[2,1,100000004,72050,64,0,0,0,0,0,1526781600,0]]
+[100,[
+        [2,1,100000004,72050,64,0,0,0,0,0,1526781600,0]
+     ]
+]
 // Matching response. Error code = 15 (OrderNotFound) 
 [203,[[1,15]]]
 ```
@@ -245,7 +264,7 @@ socket.send('[103,[[1,1,100000003],[2,1,100000004]]]');
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
 client_order_id | true | uint32 | Client defined order id
-ins_id | true | uint16 | Instrument identificator
+ins_id | true | uint16 | Instrument ID
 order_id | true | uint64 | System order id
 
 ### Error response message

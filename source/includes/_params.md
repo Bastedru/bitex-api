@@ -36,7 +36,7 @@ funding_index_id,expiration_index_id,funding_begin_time,funding_period_time,expi
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-ins_id | true | uint16 | Instrument identificator
+ins_id | true | uint16 | Instrument ID
 ins_name | true | string | Instrument name
 tick_size | true | int32 | Minimum price step
 price_min | true | int32 | Minimum price limit
@@ -51,10 +51,10 @@ maintenance | true | double | Maintenance margin, %
 leverage | true | uint8 | Leverage
 ins_type | true | uint16 | Instrument type: <br>1 - Swap contract<br>2 - Futures contract<br>5 - Instrument price index<br>6 - Instrument mark price<br>7 - avg 30m price index (expiration price)<br>8 - avg 8h index (funding value index)
 expiration_time | true | uint64 | Futures expiration time in ms, since Jan 01 1970. (UTC)
-index_id | true | uint16 | Index price identificator
-mark_price_id | true | uint16 | Mark price identificator
-funding_index_id | true | uint16 | Funding index identificator
-expiration_index_id | true | uint16 | Expiration index identificator
+index_id | true | uint16 | Index price ID
+mark_price_id | true | uint16 | Mark price ID
+funding_index_id | true | uint16 | Funding index ID
+expiration_index_id | true | uint16 | Expiration index ID
 funding_begin_time | true | uint32 | Funding begin time in seconds since 12:00 AM (UTC)
 funding_period_time | true | uint32 | Funding period time in seconds  
 expiration_comiss | true | double | Expiration commission, %
@@ -87,7 +87,7 @@ In first time after connect client receives statistics on all instruments. Then 
 
 Parameter | Required | Type | Description
 --------- | ------- | ----- | -----------
-ins_id | true | uint16 | Instrument identificator
+ins_id | true | uint16 | Instrument ID
 last_deal_price | true | int32 | Last deal price
 last_deal_volume | true | int32 | Last deal volume
 change_24h | true | int32 | Price change for the last 24 hours

@@ -1,6 +1,6 @@
 # Error codes
 
-API uses next error codes.
+All API messages use the following error codes.
 
 Code | Name | Description
 ---------- | ------- | --------
@@ -26,3 +26,4 @@ Code | Name | Description
 20 | TradeDisabled | Trade disabled
 21 | NotEnothLiquidity | Not enoth liquidity for operation
 22 | MaxPosExceeds | Exceeds max position for current instrument
+23 | FloodControl | Flood control points decreased to 0
