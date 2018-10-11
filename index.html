@@ -838,13 +838,13 @@ Trades snapshot may be sended several separate messages
 </tbody></table>
 <h3 id='response-trades-incremental-changes'>Response trades incremental changes</h3>
 <p><code>
-[5,ins_id,[[price,volume,timestamp]]]
+[6,ins_id,[[price,volume,timestamp]]]
 </code></p>
 
 <blockquote>
 <p>Trades incremental changes:</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">,[</span>
         <span class="p">[</span><span class="mi">1619715</span><span class="p">,</span><span class="o">-</span><span class="mi">4100</span><span class="p">,</span><span class="mi">1513217115</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">1619713</span><span class="p">,</span><span class="o">-</span><span class="mi">876</span><span class="p">,</span><span class="mi">1513217115</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">1619713</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1513217117</span><span class="p">]</span>
@@ -1758,6 +1758,11 @@ If the flood control system terminate connection 3 times in an hour, the client 
 </tr>
 <tr>
 <td>5</td>
+<td>TradeSnapshotResponse</td>
+<td>Snapshot of trades</td>
+</tr>
+<tr>
+<td>6</td>
 <td>TradeIncrementalResponse</td>
 <td>Incremental messages for trades</td>
 </tr>
