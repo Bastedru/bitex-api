@@ -22,5 +22,5 @@ search: true
 
 # Introduction
 
-The API is implemented via WebSocket, connection address: ws://ws.bitex.one/ws
+The API is implemented via WebSocket, connection address: wss://ws.bitex.one/ws
 
