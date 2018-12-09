@@ -76,13 +76,13 @@ timestamp | true | uint64 | Deal time in sec, since Jan 01 1970. (UTC)
 
 ### Response trades incremental changes
 <code>
-[5,ins_id,[[price,volume,timestamp]]]
+[6,ins_id,[[price,volume,timestamp]]]
 </code>
 
 > Trades incremental changes:
 
 ```javascript
-[5,1,[
+[6,1,[
         [1619715,-4100,1513217115],
         [1619713,-876,1513217115],
         [1619713,5,1513217117]

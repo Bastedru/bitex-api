@@ -22,7 +22,8 @@ Code | Name | Description
 2 | OrderBookSnapshotResponse | Snapshot of order book
 3 | OrderBookIncrementalResponse | Incremental messages for order book
 4 | TradeClearResponse | Clear trades of specific instrument
-5 | TradeIncrementalResponse | Incremental messages for trades
+5 | TradeSnapshotResponse | Snapshot of trades
+6 | TradeIncrementalResponse | Incremental messages for trades
 400 | GeneralErrorResponse | General error message
 1001 | AuthorizationResponse | Authorization response message
 1105 | InstrumentParamsResponse | Request all instrument parameters
