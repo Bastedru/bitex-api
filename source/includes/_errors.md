@@ -27,3 +27,4 @@ Code | Name | Description
 21 | NotEnothLiquidity | Not enoth liquidity for operation
 22 | MaxPosExceeds | Exceeds max position for current instrument
 23 | FloodControl | Flood control points decreased to 0
+24 | InstrumentExpirated | Instrument already expirated

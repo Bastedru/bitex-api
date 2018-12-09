@@ -8,6 +8,8 @@ toc_footers:
   - <a href='https://www.bitex.one/form/form-registration/'>Sign Up for a Developer Key</a>
 
 includes:
+  - restapistat
+  - websocketapi
   - params
   - orderbook
   - trade
@@ -20,7 +22,5 @@ includes:
 search: true
 ---
 
-# Introduction
 
-The API is implemented via WebSocket, connection address: wss://ws.bitex.one/ws
 
