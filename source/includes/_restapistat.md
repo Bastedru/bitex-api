@@ -39,9 +39,9 @@ Parameter | Required | Type | Description
 btc_24h | true | uint32 | Last 24h turnover in BTC
 last_deal | true | int32 | Last deal price of the instrument
 leverage | true | uint16 | Leverage instrument
-maker_commission | double | int32 | Comission of maker deal side (if negative then maker takes rebate)
+maker_commission | double | int32 | Comission of maker deal side in % (if negative then maker takes rebate)
 name | true | string | Instrument name
-taker_commission | double | int32 | Comission of taker deal side
+taker_commission | double | int32 | Comission of taker deal side in %
 type | true | uint8 | Type of instrument
 usd_24h | true | uint32 | Last 24h turnover in USD
 
