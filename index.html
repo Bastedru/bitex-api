@@ -219,7 +219,18 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#rest-api-for-statistic-data" class="toc-h1 toc-link" data-title="REST API for statistic data">REST API for statistic data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request" class="toc-h2 toc-link" data-title="Request">Request</a>
+                  </li>
+                  <li>
+                    <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket-api" class="toc-h1 toc-link" data-title="WEBSOCKET API">WEBSOCKET API</a>
           </li>
           <li>
             <a href="#instrument-params" class="toc-h1 toc-link" data-title="Instrument params">Instrument params</a>
@@ -362,8 +373,96 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>The API is implemented via WebSocket, connection address: wss://ws.bitex.one/ws</p>
+        <h1 id='rest-api-for-statistic-data'>REST API for statistic data</h1>
+<p>Through the REST API, you can get statistical data on all stock instruments in the last 24 hours.</p>
+
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Request  </span>
+<span class="nl">https</span><span class="p">:</span><span class="c1">//api.bitex.one/v1/instruments</span>
+
+<span class="c1">// Response</span>
+<span class="p">[{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">109.38275895</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">26.031</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"SWAP"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">391174.62</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">99.1654167</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">107.45</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"BCHABCUSDT-03.19"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"FUT"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">354635.36</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">106.76572455</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">3561.8</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"BTCUSDT-03.19"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"FUT"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">381815.58</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">105.29687215</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">3573.2</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"SWAP"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">376562.67</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">91.2738902</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">95.58</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"ETHUSDT"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"SWAP"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">326413.68</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">99.0154287</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">108.66</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"BCHABCUSDT"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"SWAP"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">354098.97</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">109.22877655</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">2.021</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"EOSUSDT"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"SWAP"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">390623.95</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">91.5819756</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">96.64</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"ETHUSDT-03.19"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"FUT"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">327515.46</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">109.8624868</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">25.011</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"LTCUSDT-03.19"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"FUT"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">392890.22</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">"btc_24h"</span><span class="p">:</span><span class="mf">109.2785538</span><span class="p">,</span><span class="s2">"last_deal"</span><span class="p">:</span><span class="mf">2.0084</span><span class="p">,</span><span class="s2">"leverage"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">"maker_commission"</span><span class="p">:</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"EOSUSDT-03.19"</span><span class="p">,</span><span class="s2">"taker_commission"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"FUT"</span><span class="p">,</span><span class="s2">"usd_24h"</span><span class="p">:</span><span class="mf">390801.96</span><span class="p">}]</span>
+</code></pre><h3 id='request'>Request</h3>
+<p><code>
+<a href='https://api.bitex.one/v1/instruments'>https://api.bitex.one/v1/instruments</a>
+</code></p>
+<h3 id='response'>Response</h3>
+<p><code>
+{&quot;btc_24h&quot;:,&quot;last_deal&quot;:,&quot;leverage&quot;:,&quot;maker_commission&quot;:,&quot;name&quot;:,&quot;taker_commission&quot;:,&quot;type&quot;:,&quot;usd_24h&quot;:}
+</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>btc_24h</td>
+<td>true</td>
+<td>uint32</td>
+<td>Last 24h turnover in BTC</td>
+</tr>
+<tr>
+<td>last_deal</td>
+<td>true</td>
+<td>int32</td>
+<td>Last deal price of the instrument</td>
+</tr>
+<tr>
+<td>leverage</td>
+<td>true</td>
+<td>uint16</td>
+<td>Leverage instrument</td>
+</tr>
+<tr>
+<td>maker_commission</td>
+<td>double</td>
+<td>int32</td>
+<td>Comission of maker deal side in % (if negative then maker takes rebate)</td>
+</tr>
+<tr>
+<td>name</td>
+<td>true</td>
+<td>string</td>
+<td>Instrument name</td>
+</tr>
+<tr>
+<td>taker_commission</td>
+<td>double</td>
+<td>int32</td>
+<td>Comission of taker deal side in %</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>uint8</td>
+<td>Type of instrument</td>
+</tr>
+<tr>
+<td>usd_24h</td>
+<td>true</td>
+<td>uint32</td>
+<td>Last 24h turnover in USD</td>
+</tr>
+</tbody></table>
+<h1 id='websocket-api'>WEBSOCKET API</h1>
+<aside class="success">Connection address: <b>wss://ws.bitex.one/ws</b></aside>
+
+<p>The WEBSOCKET API is designed to receive market data and send trade orders. It can be used for programming trading robots and integrating into various trading terminals.</p>
 <h1 id='instrument-params'>Instrument params</h1>
 <p>Request instrument parameters.</p>
 
@@ -1989,6 +2088,11 @@ If the flood control system terminate connection 3 times in an hour, the client 
 <td>23</td>
 <td>FloodControl</td>
 <td>Flood control points decreased to 0</td>
+</tr>
+<tr>
+<td>24</td>
+<td>InstrumentExpirated</td>
+<td>Instrument already expirated</td>
 </tr>
 </tbody></table>
 
